@@ -1,4 +1,3 @@
-time
 matplotlib
 selenium
 bs4
