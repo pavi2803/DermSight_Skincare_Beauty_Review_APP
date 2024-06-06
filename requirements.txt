@@ -4,4 +4,4 @@ bs4
 pandas
 streamlit
 pip
-webdriver-manager
+webdriver_manager
