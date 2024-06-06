@@ -19,7 +19,7 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--no-sandbox")
-chrome_service = Service(ChromeDriverManager().install())
+chrome_service = Service("/usr/local/bin/chromedriver")
 driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
 # Define a function to scrape the current page
@@ -31,7 +31,7 @@ def price_product(url):
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument("--no-sandbox")
-    chrome_service = Service(ChromeDriverManager().install())
+    chrome_service = Service("/usr/local/bin/chromedriver")
     driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
     data=[]
     def scrape_page():
@@ -168,7 +168,7 @@ def fetch_ingr_url(url):
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")
-    chrome_service = Service(ChromeDriverManager().install())
+    chrome_service = Service("/usr/local/bin/chromedriver")
     driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
     driver.get(url_fetch)
     try:
@@ -214,7 +214,7 @@ def fetch_ingr(url):
     chrome_options.add_argument("--no-sandbox")
 
    
-    chrome_service = Service(ChromeDriverManager().install())
+    chrome_service = Service("/usr/local/bin/chromedriver")
     driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
     driver.get(ingrurl)
