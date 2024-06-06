@@ -9,6 +9,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import streamlit as st
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 # Initialize the WebDriver
@@ -19,7 +20,7 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--no-sandbox")
-chrome_service = Service("/usr/local/bin/chromedriver")
+chrome_service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
 # Define a function to scrape the current page
@@ -31,7 +32,7 @@ def price_product(url):
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument("--no-sandbox")
-    chrome_service = Service("/usr/local/bin/chromedriver")
+    chrome_service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
     data=[]
     def scrape_page():
@@ -169,8 +170,8 @@ def fetch_ingr_url(url):
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")
     chrome_service = Service("/usr/local/bin/chromedriver")
+    chrome_service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
-    driver.get(url_fetch)
     try:
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'paddingbl'))
@@ -214,7 +215,7 @@ def fetch_ingr(url):
     chrome_options.add_argument("--no-sandbox")
 
    
-    chrome_service = Service("/usr/local/bin/chromedriver")
+    chrome_service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
     driver.get(ingrurl)
