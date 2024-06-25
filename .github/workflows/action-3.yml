@@ -36,10 +36,14 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
+      - name: Pull latest changes
+        run: |
+          git pull origin main
+
       - name: Commit changes
         run: |
           git add foundations.csv
-          git commit -m "Automated update of foundations.csv"
+          git commit -m "Automated update of data.csv" || echo "No changes to commit"
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
