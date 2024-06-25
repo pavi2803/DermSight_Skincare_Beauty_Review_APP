@@ -31,10 +31,11 @@ jobs:
           git add -A
           git diff-index --quiet HEAD || (git commit -m "Automated commit" -a || echo "No changes to commit")
           
-      - name: Fetch and merge changes from main
-        run: |
-          git fetch origin main
-          git reset --hard origin/main
-          
-      - name: Push changes (force overwrite)
-        run: git push --force origin main
+      - name: Fetch changes from main
+        run: git fetch origin main
+
+      - name: Merge changes from main
+        run: git merge origin/main
+
+      - name: Push changes
+        run: git push origin main
