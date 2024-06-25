@@ -1,4 +1,4 @@
-name: Run fetchingcomments_foundations.py
+name: Updating foundations file
 
 on:
   schedule:
@@ -23,19 +23,3 @@ jobs:
           
       - name: Execute Python script
         run: python fetchingcomments_foundations.py
-
-      - name: Commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git diff-index --quiet HEAD || (git commit -m "Automated commit" -a || echo "No changes to commit")
-          
-      - name: Fetch changes from main
-        run: git fetch origin main
-
-      - name: Merge changes from main
-        run: git merge origin/main
-
-      - name: Push changes
-        run: git push origin main
