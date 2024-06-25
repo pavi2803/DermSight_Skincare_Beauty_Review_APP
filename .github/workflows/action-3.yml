@@ -29,7 +29,12 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          git diff-index --quiet HEAD || (git commit -m "Automated commit" -a || echo "No changes to commit")
+          
+      - name: Fetch and merge changes from main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
           
       - name: Push changes (force overwrite)
         run: git push --force origin main
