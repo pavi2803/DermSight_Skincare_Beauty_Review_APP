@@ -1,7 +1,5 @@
+requests
 matplotlib
-selenium == 4.21.0
-bs4
 pandas
 streamlit
 pip
-webdriver_manager
