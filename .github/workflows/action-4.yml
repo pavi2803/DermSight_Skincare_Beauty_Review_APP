@@ -1,0 +1,52 @@
+name: Updating Blush file
+
+on:
+  schedule:
+    - cron: '40 11 * * 4' # At 10:40 AM UTC every Tuesday
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+          pip install requests
+          pip install numpy
+          pip install matplotlib
+          pip install streamlit
+
+      - name: Run Python script
+        run: python fetchingcomments_blush.py
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Pull latest changes
+        run: |
+          git pull origin main
+
+      - name: Commit changes
+        run: |
+          git add blush.csv
+          git commit -m "Automated update of blush.csv" || echo "No changes to commit"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch : main
