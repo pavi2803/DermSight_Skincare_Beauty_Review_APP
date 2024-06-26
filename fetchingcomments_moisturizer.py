@@ -43,7 +43,7 @@ def fetchcomments(prodid):
         
         # Print out each comment
             for comment in comments:
-                dataset+=comment
+                dataset=dataset+"  "+comment
             return dataset
             break
 
