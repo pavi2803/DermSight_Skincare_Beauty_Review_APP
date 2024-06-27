@@ -307,7 +307,7 @@ elif(selected_category=="Sunscreens"):
                 else:
                     st.text("Sorry! No reviews found for this product")
                     
-            except Exception as e:
-                st.error(f"An error occurred: {e}")
+              except Exception as e:
+                  st.error(f"An error occurred: {e}")
               
   
