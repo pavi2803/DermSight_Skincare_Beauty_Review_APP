@@ -63,8 +63,6 @@ if(selected_category=="Moisturizers"):
             
             comments = desired_prod_id['comments']
             
-            st.write(comments)
-            
             
             input_prompt = """For the following reviews, 
                         Display the following in this format below::
@@ -79,7 +77,7 @@ if(selected_category=="Moisturizers"):
                         after analyzing all reviews, tell me what weighs more, the pros or cons?
                         If you did not get any reviews from me, just say : No reviews found for this product"""
 
-            if comments!=None:
+            if(comments!=None):
                 for i in comments:
                     text=str(i)
                     input_prompt+=text
@@ -146,7 +144,7 @@ elif(selected_category=="Foundations"):
                         and after analyzing all reviews, tell me what weighs more, the pros or cons?
                         If you did not get any reviews from me, just say : No reviews found for this product"""
             
-            if comments!=None:
+            if(comments!=None):
                 for i in comments:
                     text=str(i)
                     input_prompt+=text
