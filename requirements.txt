@@ -3,3 +3,5 @@ matplotlib
 pandas
 streamlit
 pip
+google-generativeai
+
