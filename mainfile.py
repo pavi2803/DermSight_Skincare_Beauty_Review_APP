@@ -77,19 +77,24 @@ if(selected_category=="Moisturizers"):
                         after analyzing all reviews, tell me what weighs more, the pros or cons?
                         If you did not get any reviews from me, just say : No reviews found for this product"""
 
-            if(comments!=None):
-                for i in comments:
-                    text=str(i)
-                    input_prompt+=text
-
-                submit=st.button("Get Reviews for this product")
+            try:
+                if(comments!=None):
+                    for i in comments:
+                        text=str(i)
+                        input_prompt+=text
+    
+                    submit=st.button("Get Reviews for this product")
+                    
+                    if submit:
+                        response=get_gemini_repsonse(input_prompt)
+                        st.subheader("Based on the users review :")
+                        st.write(response)
+                else:
+                    st.text("Sorry! No reviews found for this product")
+                    
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
                 
-                if submit:
-                    response=get_gemini_repsonse(input_prompt)
-                    st.subheader("Based on the users review :")
-                    st.write(response)
-            else:
-                st.text("Sorry! No reviews found for this product")
             
 elif(selected_category=="Foundations"):
     
