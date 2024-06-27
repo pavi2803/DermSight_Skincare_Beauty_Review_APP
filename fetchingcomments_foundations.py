@@ -44,7 +44,7 @@ def fetchcomments(prodid):
         
         # Print out each comment
             for comment in comments:
-                dataset=dataset+"  "+comment
+                dataset=dataset+" * "+comment
             return dataset
             break
 
@@ -56,8 +56,10 @@ def fetchcomments(prodid):
 
 data = pd.read_csv("foundations.csv")
 data['comments'] = 'None'
-for i in data['ID']:
-    c = fetchcomments(i)
-    data.iloc[data['ID'] == i, data.columns.get_loc('comments')] = c
+
+# Iterate over each ID and update the comments column
+for i in range(len(data)):
+    c = fetchcomments(data.loc[i, 'ID'])
+    data.loc[i, 'comments'] = c
     
 data.to_csv("foundations.csv")
