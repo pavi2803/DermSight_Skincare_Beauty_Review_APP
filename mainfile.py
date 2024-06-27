@@ -78,7 +78,7 @@ if(selected_category=="Moisturizers"):
                         If you did not get any reviews from me, just say : No reviews found for this product"""
 
             try:
-                if(comments!=None):
+                if(comments is not None):
                     for i in comments:
                         text=str(i)
                         input_prompt+=text
