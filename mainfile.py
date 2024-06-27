@@ -95,7 +95,7 @@ if(selected_category=="Moisturizers"):
 elif(selected_category=="Foundations"):
     
     
-    data=pd.read_csv("Foundations.csv")
+    data=pd.read_csv("foundations.csv")
     
 
     brand_options = data['Brand'].unique()
@@ -158,7 +158,7 @@ elif(selected_category=="Foundations"):
             
                         
 elif(selected_category=="Blushes"):
-    data = pd.read_csv("Blush.csv")
+    data = pd.read_csv("blush.csv")
 
 
     brand_options = data['Brand'].unique()
