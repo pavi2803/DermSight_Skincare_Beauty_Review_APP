@@ -78,19 +78,20 @@ if(selected_category=="Moisturizers"):
                              .....
                         after analyzing all reviews, tell me what weighs more, the pros or cons?
                         If you did not get any reviews from me, just say : No reviews found for this product"""
-                        
-            for i in comments:
-                text=str(i)
-                input_prompt+=text
+
+            if comments!=None:
+                for i in comments:
+                    text=str(i)
+                    input_prompt+=text
+
+                submit=st.button("Get Reviews for this product")
                 
-                
-                
-            submit=st.button("Get Reviews for this product")
-            
-            if submit:
-                response=get_gemini_repsonse(input_prompt)
-                st.subheader("Based on the users review :")
-                st.write(response)
+                if submit:
+                    response=get_gemini_repsonse(input_prompt)
+                    st.subheader("Based on the users review :")
+                    st.write(response)
+            else:
+                st.text("Sorry! No reviews found for this product")
             
 elif(selected_category=="Foundations"):
     
@@ -144,16 +145,19 @@ elif(selected_category=="Foundations"):
                              .....
                         and after analyzing all reviews, tell me what weighs more, the pros or cons?
                         If you did not get any reviews from me, just say : No reviews found for this product"""
-            for i in comments:
-                text=str(i)
-                input_prompt+=text
-                
-                
-            submit=st.button("Get Reviews for this product")
-            if submit:
-                response=get_gemini_repsonse(input_prompt)
-                st.subheader("Based on the users review :")
-                st.write(response)
+            
+            if comments!=None:
+                for i in comments:
+                    text=str(i)
+                    input_prompt+=text
+                    submit=st.button("Get Reviews for this product")
+                    
+                    if submit:
+                        response=get_gemini_repsonse(input_prompt)
+                        st.subheader("Based on the users review :")
+                        st.write(response)
+            else:
+                st.text("Sorry! No reviews found for this product")
     
             
                         
@@ -208,16 +212,18 @@ elif(selected_category=="Blushes"):
                              .....
                         After analyzing all reviews, tell me what weighs more, the pros or cons?
                         If you did not get any reviews from me, just say : No reviews found for this product"""
-            for i in comments:
-                text=str(i)
-                input_prompt+=text
-                
-                
-            submit=st.button("Get Reviews for this product")
-            if submit:
-                response=get_gemini_repsonse(input_prompt)
-                st.subheader("Based on the users review :")
-                st.write(response)
+            
+            if(comments!=None):
+                for i in comments:
+                    text=str(i)
+                    input_prompt+=text
+                    submit=st.button("Get Reviews for this product")
+                    if submit:
+                        response=get_gemini_repsonse(input_prompt)
+                        st.subheader("Based on the users review :")
+                        st.write(response)
+            else:
+                st.text("Sorry! No reviews found for this product")
     
 elif(selected_category=="Sunscreens"):
     
@@ -271,14 +277,17 @@ elif(selected_category=="Sunscreens"):
                                .....
                           and after analyzing all reviews, tell me what weighs more, the pros or cons?
                           If you did not get any reviews from me, just say : No reviews found for this product"""
-              for i in comments:
-                  text=str(i)
-                  input_prompt+=text
-                  
-                  
-              submit=st.button("Get Reviews for this product")
-              if submit:
-                  response=get_gemini_repsonse(input_prompt)
-                  st.subheader("Based on the users review :")
-                  st.write(response)
+              
+              if(comments!=None):
+                  for i in comments:
+                      text=str(i)
+                      input_prompt+=text
+                      submit=st.button("Get Reviews for this product")
+                      if submit:
+                          response=get_gemini_repsonse(input_prompt)
+                          st.subheader("Based on the users review :")
+                          st.write(response)
+              else:
+                  st.text("Sorry! No reviews found for this product")
+              
   
