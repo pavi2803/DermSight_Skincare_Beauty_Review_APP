@@ -1,6 +1,13 @@
-**Skincare and Beauty Decoded with Analytics and AI**
+## About this Application:
 
-Choosing the right skincare or make up product is always a hastle. Going through the ingredients, figuring out if it is gonna suit your skintype, going through what other users say, and more!!
+- Choosing the right skincare or makeup can be extremely difficult when there are numerous options out there
+- Carefully considering all the user reviews is essential to determine if we can use the product or not by weighing the pros and cons from it
+- With this application, the real-time reviews of each products in both skincare and makeup is updated using API call and JSON data parsing, with automation assisted by GitHub Actions.
 
-With this one application, the user sentiment analysis based on their usage of the product, ingredient analysis of the product can be combined to facilitate the ease of decision making.
+## Tech Stack:
 
+- API - HTTP get request
+- JSON
+- Python
+- GitHub Actions
+- Gemini Pro API
