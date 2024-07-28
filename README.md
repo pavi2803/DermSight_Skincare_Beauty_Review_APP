@@ -1,3 +1,7 @@
+# DermSight - Skincare and Beauty Insights
+
+This application lets users fetch and view product details like reviews in a concise and precise manner, giving a overall performance of the product accurately with rating.
+
 ## About this Application:
 
 - Choosing the right skincare or makeup can be extremely difficult when there are numerous options out there
@@ -11,3 +15,4 @@
 - Python
 - GitHub Actions
 - Gemini Pro API
+- Prompt Engineering
