@@ -347,7 +347,8 @@ elif(selected_category=="Lipstick"):
               desired_prod_id =  data[(data['Brand'] == selected_brand) & (data['Name'] == selected_name)]
               
               st.image("https://media.ulta.com/i/ulta/"+str(desired_prod_id.iloc[0]['sku']), caption='image')    
-              
+
+              st.write(desired_prod_id)
               comments = desired_prod_id.iloc[0]['comments']
               
               
