@@ -341,46 +341,51 @@ elif(selected_category=="Lipstick"):
           selected_name = st.selectbox("Select a product", dropdownnames)
           
           
-          if selected_name!=None:
-              
-              
-              desired_prod_id =  data[(data['Brand'] == selected_brand) & (data['Name'] == selected_name)]
-              
-              st.image("https://media.ulta.com/i/ulta/"+str(desired_prod_id.iloc[0]['sku']), caption='image')    
+          if selected_name is not None:
 
-              st.write(desired_prod_id)
-              comments = desired_prod_id.iloc[0]['comments']
-              
-              
-              input_prompt = """For the following reviews, 
-                          Display the following in this format below::
-                          without displaying each review, carefully summarize them all and give an overall sentiment score on a scale of 1 to 10 with 1 being most negative and 10 being most positive; in the format :: Overall Sentiment Score:  ___/10 \n
-                          By Keep it concise, Highlight the top three essential information in the reviews, (consisting both negative and positive reviews) by representing the whole review set, in the format :: Highlights in the reviews : \n
-                              Pros: \n
-                               _____\n
-                               ....
-                              Cons: \n
-                               ___ \n
-                               .....
-                          and after analyzing all reviews, tell me what weighs more, the pros or cons?
-                          If you did not get any reviews from me, just say : No reviews found for this product"""
-              
-              try:
-                if(comments is not None):
-                    for i in comments:
-                        text=str(i)
-                        input_prompt+=text
-    
-                    submit=st.button("Get Reviews for this product")
-                    
-                    if submit:
-                        response=get_gemini_repsonse(input_prompt)
-                        st.subheader("Based on the users review :")
-                        st.write(response)
+              desired_prod_id = data[(data['Brand'] == selected_brand) & (data['Name'] == selected_name)]
+                
+                if not desired_prod_id.empty:
+                    try:
+                        
+                        if 'sku' in desired_prod_id.columns and 'comments' in desired_prod_id.columns:
+                            st.image("https://media.ulta.com/i/ulta/"+str(desired_prod_id.iloc[0]['sku']), caption='image')
+                            
+                            comments = desired_prod_id.iloc[0]['comments']
+                            
+                            if isinstance(comments, str):
+                                input_prompt = """For the following reviews, 
+                                    Display the following in this format below::
+                                    without displaying each review, carefully summarize them all and give an overall sentiment score on a scale of 1 to 10 with 1 being most negative and 10 being most positive; in the format :: Overall Sentiment Score:  ___/10 \n
+                                    By Keep it concise, Highlight the top three essential information in the reviews, (consisting both negative and positive reviews) by representing the whole review set, in the format :: Highlights in the reviews : \n
+                                        Pros: \n
+                                         _____\n
+                                         ....
+                                        Cons: \n
+                                         ___ \n
+                                         .....
+                                    and after analyzing all reviews, tell me what weighs more, the pros or cons?
+                                    If you did not get any reviews from me, just say : No reviews found for this product"""
+            
+                        
+                                input_prompt += comments
+            
+                          
+                                submit = st.button("Get Reviews for this product")
+                                
+                                if submit:
+                                    response = get_gemini_response(input_prompt)
+                                    st.subheader("Based on the users review:")
+                                    st.write(response)
+                            else:
+                                st.text("Sorry! No reviews found for this product")
+                        else:
+                            st.text("The required columns do not exist in the DataFrame.")
+                    except Exception as e:
+                        st.error(f"An error occurred: {e}")
                 else:
-                    st.text("Sorry! No reviews found for this product")
-                    
-              except Exception as e:
-                  st.error(f"An error occurred: {e}")
+                    st.text("No products found matching the selected brand and name.")
+
               
-  
+              
+                
