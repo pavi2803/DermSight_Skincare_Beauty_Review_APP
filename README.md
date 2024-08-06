@@ -28,14 +28,15 @@ DermSight simplifies this process by fetching real-time reviews for a wide range
   
 **Installation**
 Clone the Repository:
-git clone https://github.com/yourusername/DermSight.git
+git clone https://github.com/pavi2803/Skincare_Beauty.git
 cd DermSight
 
 **Install Dependencies:**
 pip install -r requirements.txt
 
-Set Up Environment Variables:
+**Set Up Environment Variables:**
 Create a .env file in the root directory and add your API keys and other necessary configuration:
+
 GEMINI_PRO_API_KEY=your_api_key_here
 
 ### Usage
