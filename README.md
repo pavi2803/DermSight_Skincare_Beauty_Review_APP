@@ -29,7 +29,6 @@ DermSight simplifies this process by fetching real-time reviews for a wide range
 **Installation**
 Clone the Repository:
 git clone https://github.com/pavi2803/Skincare_Beauty.git
-cd DermSight
 
 **Install Dependencies:**
 pip install -r requirements.txt
