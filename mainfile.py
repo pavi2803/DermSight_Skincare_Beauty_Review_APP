@@ -11,7 +11,7 @@ import google.generativeai as genai
 
 
 
-genai.configure(api_key="AIzaSyCoa44PPl3-Md864N33LqkjesOzXdrXlac")
+genai.configure(api_key="AIzaSyA4f-tjGl_eqaY445FLyPVJAPqOuH2ijMs")
 
 
 def get_gemini_repsonse(input_prompt):
