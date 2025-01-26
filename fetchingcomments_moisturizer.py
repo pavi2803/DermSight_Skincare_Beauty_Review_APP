@@ -61,4 +61,5 @@ for i in range(len(data)):
     c = fetchcomments(data.loc[i, 'ID'])
     data.loc[i, 'comments'] = c
     
+data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
 data.to_csv("moisturizers.csv")

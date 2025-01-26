@@ -55,4 +55,5 @@ for i in data['ID']:
     c = fetchcomments(i)
     data.iloc[data['ID'] == i, data.columns.get_loc('comments')] = c
     
+data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
 data.to_csv("lipstick.csv")

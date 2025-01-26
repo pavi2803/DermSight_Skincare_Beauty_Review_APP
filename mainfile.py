@@ -12,16 +12,11 @@ import google.generativeai as genai
 import os
 
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-generation_config = {"temperature" : 0.9, "top_p": 1, "top_k":1, "max_output_tokens": 2048}
-
-#genai.configure(api_key="AIzaSyAOMLkVHJ_lUELighdKoCwSgIY0U3KlXXU")
-
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# Fetch the API key from Streamlit's secrets
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 generation_config = {"temperature" : 0.9, "top_p": 1, "top_k":1, "max_output_tokens": 2048}
 
 model = genai.GenerativeModel("gemini-pro", generation_config = generation_config)
-
 
 
 
@@ -29,7 +24,7 @@ model = genai.GenerativeModel("gemini-pro", generation_config = generation_confi
 
 st.header("DermSight : Skincare and Makeup Insights")
 
-dropdown_skinbeauty = ['None','Moisturizers','Sunscreens','Foundations','Blushes','Lipstick']
+dropdown_skinbeauty = ['None','Moisturizers','Sunscreens','Foundations','Blushes']
 selected_category = st.selectbox("Choose the category you want to explore: ", dropdown_skinbeauty)
 
 
@@ -72,17 +67,7 @@ if(selected_category=="Moisturizers"):
             
             
             input_prompt = """For the following reviews, 
-                        Display the following in this format below::
-                        without displaying each review, carefully summarize them all and give an overall sentiment score on a scale of 1 to 10 with 1 being most negative and 10 being most positive; in the format :: Overall Sentiment Score:  ___/10 \n
-                        By Keep it concise, Highlight the top three essential information in the reviews, (consisting both negative and positive reviews) by representing the whole review set, in the format :: Highlights in the reviews : \n
-                            Pros: \n
-                             _____\n
-                             ....
-                            Cons: \n
-                             ___ \n
-                             .....
-                        after analyzing all reviews, tell me what weighs more, the pros or cons?
-                        If you did not get any reviews from me, just say : No reviews found for this product"""
+                        Do a pros cons list, and tell me what weighs more?  """
 
             try:
                 if(comments is not None):
@@ -96,7 +81,7 @@ if(selected_category=="Moisturizers"):
                     if submit:
                         response=model.generate_content([input_prompt])
                         st.subheader("Based on the users review :")
-                        st.write(response)
+                        st.write(response.text)
                 else:
                     st.text("Sorry! No reviews found for this product")
                     
@@ -145,30 +130,21 @@ elif(selected_category=="Foundations"):
             
             
             input_prompt = """For the following reviews, 
-                        Display the following in this format below::
-                        without displaying each review, carefully summarize them all and give an overall sentiment score on a scale of 1 to 10 with 1 being most negative and 10 being most positive; in the format :: Overall Sentiment Score:  ___/10 \n
-                        By Keep it concise, Highlight the top three essential information in the reviews, (consisting both negative and positive reviews) by representing the whole review set, in the format :: Highlights in the reviews : \n
-                            Pros: \n
-                             _____\n
-                             ....
-                            Cons: \n
-                             ___ \n
-                             .....
-                        and after analyzing all reviews, tell me what weighs more, the pros or cons?
-                        If you did not get any reviews from me, just say : No reviews found for this product"""
+                        Do a pros cons list, and tell me what weighs more?  """
             
             try:
                 if(comments is not None):
-                    for i in comments:
+                    for i in comments[0:10]:
+                        print("comment---")
                         text=str(i)
                         input_prompt+=text
     
                     submit=st.button("Get Reviews for this product")
                     
                     if submit:
-                        response=get_gemini_repsonse(input_prompt)
+                        response=model.generate_content([input_prompt])
                         st.subheader("Based on the users review :")
-                        st.write(response)
+                        st.write(response.text)
                 else:
                     st.text("Sorry! No reviews found for this product")
                     
@@ -217,28 +193,18 @@ elif(selected_category=="Blushes"):
             
             
             input_prompt = """For the following reviews, 
-                        Display the following in this format below::
-                        without displaying each review, carefully summarize them all and give an overall sentiment score on a scale of 1 to 10 with 1 being most negative and 10 being most positive; in the format :: Overall Sentiment Score:  ___/10 \n
-                        By Keep it concise, Highlight the top three essential information in the reviews, (consisting both negative and positive reviews) by representing the whole review set, in the format :: Highlights in the reviews : \n
-                            Pros: \n
-                             _____\n
-                             ....
-                            Cons: \n
-                             ___ \n
-                             .....
-                        After analyzing all reviews, tell me what weighs more, the pros or cons?
-                        If you did not get any reviews from me, just say : No reviews found for this product"""
+                        Do a pros cons list, and tell me what weighs more?  """
             
             try:
                 if(comments is not None):
-                    for i in comments:
+                    for i in comments[0:10]:
                         text=str(i)
                         input_prompt+=text
     
                     submit=st.button("Get Reviews for this product")
                     
                     if submit:
-                        response=get_gemini_repsonse(input_prompt)
+                        response=model.generate_content([input_prompt])
                         st.subheader("Based on the users review :")
                         st.write(response)
                 else:
@@ -288,17 +254,7 @@ elif(selected_category=="Sunscreens"):
               
               
               input_prompt = """For the following reviews, 
-                          Display the following in this format below::
-                          without displaying each review, carefully summarize them all and give an overall sentiment score on a scale of 1 to 10 with 1 being most negative and 10 being most positive; in the format :: Overall Sentiment Score:  ___/10 \n
-                          By Keep it concise, Highlight the top three essential information in the reviews, (consisting both negative and positive reviews) by representing the whole review set, in the format :: Highlights in the reviews : \n
-                              Pros: \n
-                               _____\n
-                               ....
-                              Cons: \n
-                               ___ \n
-                               .....
-                          and after analyzing all reviews, tell me what weighs more, the pros or cons?
-                          If you did not get any reviews from me, just say : No reviews found for this product"""
+                        Do a pros cons list, and tell me what weighs more?  """
               
               try:
                 if(comments is not None):
@@ -309,7 +265,7 @@ elif(selected_category=="Sunscreens"):
                     submit=st.button("Get Reviews for this product")
                     
                     if submit:
-                        response=get_gemini_repsonse(input_prompt)
+                        response=model.generate_content([input_prompt])
                         st.subheader("Based on the users review :")
                         st.write(response)
                 else:
