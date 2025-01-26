@@ -67,7 +67,7 @@ if(selected_category=="Moisturizers"):
             
             
             input_prompt = """For the following reviews, 
-                        Do a pros cons list, and tell me what weighs more?  """
+                        Do a pros cons list, and tell me what weighs more? If you dont get any reviews, just say you didnt find any.  """
 
             try:
                 if(comments is not None):
@@ -130,7 +130,7 @@ elif(selected_category=="Foundations"):
             
             
             input_prompt = """For the following reviews, 
-                        Do a pros cons list, and tell me what weighs more?  """
+                        Do a pros cons list, and tell me what weighs more? If you dont get any reviews, just say you didnt find any.  """
             
             try:
                 if(comments is not None):
@@ -193,7 +193,7 @@ elif(selected_category=="Blushes"):
             
             
             input_prompt = """For the following reviews, 
-                        Do a pros cons list, and tell me what weighs more?  """
+                        Do a pros cons list, and tell me what weighs more? If you dont get any reviews, just say you didnt find any. """
             
             try:
                 if(comments is not None):
@@ -206,7 +206,7 @@ elif(selected_category=="Blushes"):
                     if submit:
                         response=model.generate_content([input_prompt])
                         st.subheader("Based on the users review :")
-                        st.write(response)
+                        st.write(response.text)
                 else:
                     st.text("Sorry! No reviews found for this product")
                     
@@ -267,7 +267,7 @@ elif(selected_category=="Sunscreens"):
                     if submit:
                         response=model.generate_content([input_prompt])
                         st.subheader("Based on the users review :")
-                        st.write(response)
+                        st.write(response.text)
                 else:
                     st.text("Sorry! No reviews found for this product")
                     
