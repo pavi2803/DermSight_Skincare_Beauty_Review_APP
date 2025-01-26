@@ -9,15 +9,22 @@ plt.style.use('ggplot')
 
 import google.generativeai as genai
 
+import os
 
 
-genai.configure(api_key="AIzaSyAOMLkVHJ_lUELighdKoCwSgIY0U3KlXXU")
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+generation_config = {"temperature" : 0.9, "top_p": 1, "top_k":1, "max_output_tokens": 2048}
+
+#genai.configure(api_key="AIzaSyAOMLkVHJ_lUELighdKoCwSgIY0U3KlXXU")
+
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+generation_config = {"temperature" : 0.9, "top_p": 1, "top_k":1, "max_output_tokens": 2048}
+
+model = genai.GenerativeModel("gemini-pro", generation_config = generation_config)
 
 
-def get_gemini_repsonse(input_prompt):
-    model=genai.GenerativeModel('gemini-pro')
-    response=model.generate_content([input_prompt])
-    return response.text
+
+
 #Application
 
 st.header("DermSight : Skincare and Makeup Insights")
@@ -79,14 +86,15 @@ if(selected_category=="Moisturizers"):
 
             try:
                 if(comments is not None):
-                    for i in comments:
+                    for i in comments[0:10]:
+                        print(i)
                         text=str(i)
                         input_prompt+=text
     
                     submit=st.button("Get Reviews for this product")
                     
                     if submit:
-                        response=get_gemini_repsonse(input_prompt)
+                        response=model.generate_content([input_prompt])
                         st.subheader("Based on the users review :")
                         st.write(response)
                 else:
