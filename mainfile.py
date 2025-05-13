@@ -1,28 +1,32 @@
 import requests
-
 import pandas as pd
-
 import streamlit as st
 
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
-import google.generativeai as genai
-
-import os
-
-
 # Fetch the API key from Streamlit's secrets
+# genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+# generation_config = {"temperature" : 0.9, "top_p": 1, "top_k":1, "max_output_tokens": 2048}
+
+# model = genai.GenerativeModel("gemini-pro", generation_config = generation_config)
+
+import google.generativeai as genai
+import streamlit as st
+
+# Ensure your API key is in .streamlit/secrets.toml as GOOGLE_API_KEY
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-generation_config = {"temperature" : 0.9, "top_p": 1, "top_k":1, "max_output_tokens": 2048}
 
-model = genai.GenerativeModel("gemini-pro", generation_config = generation_config)
+# model = genai.GenerativeModel(model_name="gemini-pro")
 
+model = genai.GenerativeModel("gemini-2.0-flash")
 
+# response = model.generate_content("Write a poem about the stars")
+# st.write(response.text)
 
 #Application
 
-st.header("DermSight : Skincare and Makeup Insights")
+st.header("Skincare Insights AI: Customer Review Mining with NLP & Gemini")
 
 dropdown_skinbeauty = ['None','Moisturizers','Sunscreens','Foundations','Blushes']
 selected_category = st.selectbox("Choose the category you want to explore: ", dropdown_skinbeauty)
@@ -273,5 +277,3 @@ elif(selected_category=="Sunscreens"):
                     
               except Exception as e:
                   st.error(f"An error occurred: {e}")
-
-
