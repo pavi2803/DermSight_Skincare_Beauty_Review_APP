@@ -71,7 +71,7 @@ if(selected_category=="Moisturizers"):
             
             
             input_prompt = """For the following reviews, 
-                        Do a pros cons list, and tell me what weighs more? If you dont get any reviews, just say you didnt find any.  """
+                        Do a pros cons list, and tell me what weighs more? If you don't find any reviews, just say you didn't get any reviews. Here you go - """
 
             try:
                 if(comments is not None):
@@ -134,7 +134,7 @@ elif(selected_category=="Foundations"):
             
             
             input_prompt = """For the following reviews, 
-                        Do a pros cons list, and tell me what weighs more? If you dont get any reviews, just say you didnt find any.  """
+                        Do a pros cons list, and tell me what weighs more? If you don't find any reviews, just say you didn't get any reviews. Here you go - """
             
             try:
                 if(comments is not None):
@@ -197,7 +197,7 @@ elif(selected_category=="Blushes"):
             
             
             input_prompt = """For the following reviews, 
-                        Do a pros cons list, and tell me what weighs more? If you dont get any reviews, just say you didnt find any. """
+                        Do a pros cons list, and tell me what weighs more? If you don't find any reviews, just say you didn't get any reviews. Here you go - """
             
             try:
                 if(comments is not None):
