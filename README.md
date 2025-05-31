@@ -1,4 +1,4 @@
-## DermSight - Skincare and Beauty Insights
+## DermSight: Skincare & Beauty Info Miner 
 DermSight is an innovative application designed to help users make informed decisions about skincare and makeup products. By providing concise and precise product details, including reviews and ratings, DermSight ensures you get an accurate overall performance assessment of each product.
 
 ### About This Application
