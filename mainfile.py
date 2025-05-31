@@ -26,7 +26,7 @@ model = genai.GenerativeModel("gemini-2.0-flash")
 
 #Application
 
-st.header("Skincare Insights AI: Customer Review Mining with NLP & Gemini")
+st.header("DermSight: Skincare and Beauty Info Miner")
 
 dropdown_skinbeauty = ['None','Moisturizers','Sunscreens','Foundations','Blushes']
 selected_category = st.selectbox("Choose the category you want to explore: ", dropdown_skinbeauty)
